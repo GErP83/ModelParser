@@ -1,0 +1,60 @@
+[
+  {
+    "color": "black",
+    "long_named_category": "hue",
+    "type_that_is_too_long_here": "primary",
+    "boolean_is_bool_if_short" : true,
+    "code_array": {
+      "rgba": [255,255,255,1],
+      "hex": "#000"
+    }
+  },
+  {
+    "color": "white",
+    "long_named_category": "value",
+    "boolean_is_bool_if_short" : true,
+    "code_array": {
+      "rgba": [0,0,0,1],
+      "hex": "#FFF"
+    }
+  },
+  {
+    "color": "red",
+    "long_named_category": "hue",
+    "type_that_is_too_long_here": "primary",
+    "boolean_is_bool_if_short" : false,
+    "code_array": {
+      "rgba": [255,0,0,1],
+      "hex": "#FF0"
+    }
+  },
+  {
+    "color": "blue",
+    "long_named_category": "hue",
+    "type_that_is_too_long_here": "primary",
+    "boolean_is_bool_if_short" : false,
+    "code_array": {
+      "rgba": [0,0,255,1],
+      "hex": "#00F"
+    }
+  },
+  {
+    "color": "yellow",
+    "long_named_category": "hue",
+    "type_that_is_too_long_here": "primary",
+    "boolean_is_bool_if_short" : true,
+    "code_array": {
+      "rgba": [255,255,0,1],
+      "hex": "#FF0"
+    }
+  },
+  {
+    "color": "green",
+    "long_named_category": "hue",
+    "type_that_is_too_long_here": "secondary",
+    "code_array": {
+      "rgba": [0,255,0,1],
+      "hex": "#0F0"
+    }
+  }
+]
