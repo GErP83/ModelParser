@@ -11,11 +11,7 @@ compile 'com.github.gerp83:ModelParser:1.00'
 ```
 
 ## Examples
-
-
-
-Planned updates:
-- animations
+Very good examples can be found in the demo folder.
 
 ## Lisence
 
