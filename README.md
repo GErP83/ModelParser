@@ -16,4 +16,4 @@ Very good examples can be found in the demo folder.
 ## Lisence
 [wtfpl](http://www.wtfpl.net/)
 
-I hope this can make your job easier, happy image loading!
+I hope this can make your job easier, happy auto parsing!
