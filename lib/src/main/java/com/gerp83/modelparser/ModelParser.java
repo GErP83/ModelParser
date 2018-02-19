@@ -117,24 +117,22 @@ public class ModelParser {
             field.setAccessible(true);
 
             if (ModelClass.class.isAssignableFrom(classType)) {
-
-                Object mappedValue = parseValueFromJson(jsonObject, JSONObject.class, key, null);
-                if (mappedValue == null) {
+                if(!hasKey(jsonObject, key)) {
+                    field.setAccessible(false);
                     return;
                 }
-
+                Object mappedValue = parseValueFromJson(jsonObject, JSONObject.class, key, null);
                 Class<?> clazz = Class.forName(classType.getName());
                 Constructor<?> constructor = clazz.getConstructor(JSONObject.class);
                 Object classObject = constructor.newInstance(mappedValue);
                 field.set(object, classObject);
 
             } else if (List.class.isAssignableFrom(classType)) {
-
-                JSONArray mappedValue = (JSONArray) parseValueFromJson(jsonObject, JSONArray.class, key, null);
-                if (mappedValue == null) {
+                if(!hasKey(jsonObject, key)) {
+                    field.setAccessible(false);
                     return;
                 }
-
+                JSONArray mappedValue = (JSONArray) parseValueFromJson(jsonObject, JSONArray.class, key, null);
                 ParameterizedType parameterizedType = (ParameterizedType) field.getGenericType();
                 if (parameterizedType != null) {
                     Class<?> genericType = (Class<?>) parameterizedType.getActualTypeArguments()[0];
@@ -176,6 +174,10 @@ public class ModelParser {
                 }
 
             } else {
+                if(!hasKey(jsonObject, key)) {
+                    field.setAccessible(false);
+                    return;
+                }
                 Object mappedValue = parseValueFromJson(jsonObject, classType, key, mapFallBackClass);
                 field.set(object, mappedValue);
             }
@@ -186,10 +188,6 @@ public class ModelParser {
     }
 
     private static Object parseValueFromJson(JSONObject jsonObject, Class classType, String key, Class mapFallBackClass) {
-
-        if (!jsonObject.has(key)) {
-            return getDefaultValue(classType);
-        }
 
         Object object = null;
         try {
@@ -227,6 +225,10 @@ public class ModelParser {
         }
 
         return object;
+    }
+
+    private static boolean hasKey(JSONObject jsonObject, String key) {
+        return jsonObject.has(key);
     }
 
     private static Object getDefaultValue(Class classType) {

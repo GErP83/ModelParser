@@ -16,6 +16,7 @@ public class Color implements ModelClass {
     private boolean bool;
     private String type;
     private ColorCode code;
+    private String notNeed = "no";
 
     public Color(JSONObject object) {
         ModelParser.parseAll(this, object);

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,19 +22,32 @@ public class ModelJsonUtil {
      * @param mainObject Class from create JSONObject
      */
     public static JSONObject toJson(Object mainObject) {
+        return toJson(mainObject, null);
+    }
+
+    /**
+     * Class to JSONObject conversion
+     *
+     * @param mainObject Class from create JSONObject
+     * @param fieldKeys class fields which will be not added to JSON, this
+     *                  only works pn the parent class
+     */
+    public static JSONObject toJson(Object mainObject, ArrayList<String> fieldKeys) {
 
         JSONObject jsonObject = new JSONObject();
         try {
 
             Field[] fields = mainObject.getClass().getDeclaredFields();
             for (Field field : fields) {
+
+                if(fieldKeys != null && fieldKeys.contains(field.getName())) {
+                    continue;
+                }
                 Class classType = field.getType();
                 field.setAccessible(true);
 
                 if (isPrimitiveOrSimpleClass(classType)) {
-                    if (!field.getName().equals("serialVersionUID")) {
-                        jsonObject.put(field.getName(), field.get(mainObject));
-                    }
+                    jsonObject.put(field.getName(), field.get(mainObject));
 
                 } else if (AbstractMap.class.isAssignableFrom(classType)) {
                     AbstractMap classObject = (AbstractMap) field.get(mainObject);

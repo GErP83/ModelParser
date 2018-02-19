@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.gerp83.modelparser.ModelJsonUtil;
 import com.gerp83.modelparsertest.model.Color;
 import com.gerp83.modelparsertest.model.Color2;
 
 import org.json.JSONArray;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * Created by GErP83
@@ -24,11 +26,20 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        readFirstSample(this);
+        ArrayList<Color> colors = readFirstSample(this);
         readSecondSample(this);
+
+
+        ArrayList<String> notNeededFields = new ArrayList<>();
+        notNeededFields.add("notNeed");
+        for(Color c : colors) {
+            System.out.println("------------");
+            System.out.println(ModelJsonUtil.toJson(c, notNeededFields).toString());
+        }
     }
 
-    public void readFirstSample(Context context) {
+    public ArrayList<Color> readFirstSample(Context context) {
+        ArrayList<Color> colors = new ArrayList<>();
         try {
             InputStream is = context.getAssets().open("sample1.json");
             int size = is.available();
@@ -40,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
 
             for(int i = 0; i < array.length(); i++) {
                 Color color = new Color(array.getJSONObject(i));
+                colors.add(color);
                 System.out.println("------------");
                 System.out.println(color);
 
@@ -49,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
             ex.printStackTrace();
 
         }
+        return colors;
     }
 
     public void readSecondSample(Context context) {
