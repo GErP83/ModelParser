@@ -1,13 +1,17 @@
 # ModelParser
 
 ModelParser is tiny library for android JSON parsing. Not use any 3rd party library, it has zero dependencies.
+
+## What it can do
+- can parse a JSONObject into a custom class fields recursively
+- can convert a custom class to a JSONObject recursively
   
 ## Requirements:
 Android api 4.3+:
 
 Add to dependencies:
 ```
-compile 'com.github.gerp83:ModelParser:1.00'
+implementation 'com.github.gerp83:ModelParser:1.01'
 ```
 
 ## Examples
