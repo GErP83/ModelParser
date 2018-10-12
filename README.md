@@ -1,3 +1,5 @@
+I recommend to use [GSON](https://github.com/google/gson/), this works as well, but it is only for showcase.
+
 # ModelParser
 
 ModelParser is tiny library for android JSON parsing. Not use any 3rd party library, it has zero dependencies.
