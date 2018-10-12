@@ -1,4 +1,4 @@
-I recommend to use [GSON](https://github.com/google/gson/), this works as well, but it is only for showcase.
+I recommend to use [GSON](https://github.com/google/gson/), this works as well, but it is only for showcase and i do not support it anymore.
 
 # ModelParser
 
